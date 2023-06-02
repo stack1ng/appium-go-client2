@@ -142,21 +142,10 @@ func (d *Driver) GetSettings() string {
 }
 
 // StartActivity ...
-func (d *Driver) StartActivity(appPackage string, appActivity string) {
-	reqBody := map[string]interface{}{
-		"appPackage":  appPackage,
-		"appActivity": appActivity,
-		// "appWaitPackage":          "",
-		// "intentAction":            "",
-		// "intentCategory":          "",
-		// "intentFlags":             "",
-		// "optionalIntentArguments": "",
-		// "dontStopAppOnReset":      "",
-	}
-
+func (d *Driver) StartActivity(appPackage string, startArgs map[string]interface{}) {
 	appiumReq := &AppiumRequest{
 		"POST",
-		reqBody,
+		startArgs,
 		"/session/" + d.SessionID + "/appium/device/start_activity",
 	}
 
