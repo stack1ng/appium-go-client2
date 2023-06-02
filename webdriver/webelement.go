@@ -42,6 +42,8 @@ func (d *Driver) FindElement(elBy string, elName string) *Element {
 
 	if err != nil {
 		panic(err)
+	} else if value["message"] == "An element could not be located on the page using the given search parameters." {
+		return nil
 	}
 	return &Element{d, value["ELEMENT"]}
 }
